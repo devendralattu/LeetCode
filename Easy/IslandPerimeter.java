@@ -1,4 +1,6 @@
 /* https://leetcode.com/problems/island-perimeter/ */
+// Better solution : #islands * 4 - #neighbors * 2
+// neighbours are any right and bottom blocks.
 
 public class Solution {
     public int islandPerimeter(int[][] grid) {
