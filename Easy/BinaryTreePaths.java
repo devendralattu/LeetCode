@@ -29,7 +29,7 @@ public class Solution {
 			return;
 		}
 
-    if(root.left != null)
+		if(root.left != null)
 		    binaryTreePaths(root.left, list, s + root.left.val + "->");
 		if(root.right != null)    
 		    binaryTreePaths(root.right, list, s + root.right.val + "->");
