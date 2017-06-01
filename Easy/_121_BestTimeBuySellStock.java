@@ -1,5 +1,25 @@
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock
 
+
+public int maxProfit(int[] arr) {
+
+    if(arr == null || arr.length < 2) {
+        return 0;
+    }
+
+    int min = arr[0];
+    int profit = 0;
+
+    for(int n : arr) {
+        profit = Math.max(profit, n - min);
+        min = Math.min(min, n);
+    }
+
+    return profit;
+}
+
+// Some of my OLD solution
+
 public class Solution {
     public int maxProfit(int[] prices) {
         
