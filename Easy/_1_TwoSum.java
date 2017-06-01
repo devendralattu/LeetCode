@@ -7,7 +7,7 @@ public class Solution {
         
         int index = 0;
         for(int n : nums) {
-            if(null != map && map.containsKey(target - n)) {
+            if(map.containsKey(target - n)) {
                 int index_0 = map.get(target - n);
                 return new int[]{index_0, index};
             }
