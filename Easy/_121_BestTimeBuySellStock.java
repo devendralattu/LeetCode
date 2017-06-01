@@ -18,7 +18,7 @@ public int maxProfit(int[] arr) {
     return profit;
 }
 
-// Some of my OLD solution
+// If the question involves sell the previous stock at each step
 
 public class Solution {
     public int maxProfit(int[] prices) {
