@@ -32,5 +32,5 @@ public int majorityElement(int[] nums) {
         }
     }
 
-    return (count >= nums.length / 2) ? candidate : -1;
+    return (count > nums.length / 2) ? candidate : -1;
 }
