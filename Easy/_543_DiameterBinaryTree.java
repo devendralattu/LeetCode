@@ -24,10 +24,9 @@ public class Solution {
 
 
 // Optimized Solution : Time O(n)
-
 public class Solution {
     
-    int max = 0;
+    private int max = 0;
     
     public int diameterOfBinaryTree(TreeNode root) {
         if(root == null) {
