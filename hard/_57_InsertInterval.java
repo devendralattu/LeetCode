@@ -33,8 +33,7 @@ public class Solution {
             if(newInterval.start > interval.end) {
                 index++;
             } else {
-                list.add(index, newInterval);
-                return list;
+                break;
             }
         }
         list.add(index, newInterval);
