@@ -37,3 +37,14 @@ WHERE (e.DepartmentId, e.Salary) IN
                                      FROM Employee e2 
                                      GROUP BY e2.DepartmentId
                                     );
+                    
+/* Similar but slower query */                    
+# Write your MySQL query statement below
+SELECT d.Name as Department, e.Name as Employee, e.Salary as Salary
+FROM Employee e JOIN Department d ON e.DepartmentId = d.Id
+WHERE e.Salary IN (
+					SELECT MAX(e2.Salary) 
+					FROM Employee e2
+                    WHERE e.DepartmentId = e2.DepartmentId
+					GROUP BY e2.DepartmentId
+				  );
