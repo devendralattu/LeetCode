@@ -45,6 +45,6 @@ FROM Employee e JOIN Department d ON e.DepartmentId = d.Id
 WHERE e.Salary IN (
 					SELECT MAX(e2.Salary) 
 					FROM Employee e2
-                    WHERE e.DepartmentId = e2.DepartmentId
+                    			WHERE e.DepartmentId = e2.DepartmentId
 					GROUP BY e2.DepartmentId
 				  );
