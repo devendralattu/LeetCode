@@ -10,7 +10,6 @@ For example, given the following matrix:
 Return 4. 
 */
 
-
 public class _221_MaximalSquare {
 
 	public int maximalSquare(char[][] matrix) {
@@ -23,9 +22,9 @@ public class _221_MaximalSquare {
 		int col = matrix[0].length;
 		int max = 0;
 
-    /*
-    // using O(row * col) space
-    int[][] dp = new int[row + 1][col + 1];
+        /*
+        // using O(row * col) space
+        int[][] dp = new int[row + 1][col + 1];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
 				if (matrix[i][j] == '0') {
@@ -35,24 +34,23 @@ public class _221_MaximalSquare {
 				max = Math.max(max, dp[i + 1][j + 1]);
 			}
 		}
-    System.out.println(max*max);
-    */
+        System.out.println(max*max);
+        */
         
-    // using O(col) space
-    int prev = 0;
-    int[] dp = new int[col + 1];
+        // using O(col) space
+        int prev = 0;
+        int[] dp = new int[col + 1];
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
 				if (matrix[i][j] == '0') {
-          prev = dp[j + 1];
-          dp[j + 1] = 0;
-          continue;
+                    prev = dp[j + 1];
+                    dp[j + 1] = 0;
+					continue;
 				}
-        
-        int temp = dp[j + 1];
+                int temp = dp[j + 1];
 				dp[j + 1] = min(prev, dp[j], dp[j + 1]) + 1;
 				max = Math.max(max, dp[j + 1]);
-        prev = temp;
+                prev = temp;
 			}
 		}
    
@@ -72,3 +70,5 @@ public class _221_MaximalSquare {
 		System.out.println("max_area = " + max_area);
 	}
 }
+
+
