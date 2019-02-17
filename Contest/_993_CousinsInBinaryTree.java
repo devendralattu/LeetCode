@@ -8,43 +8,31 @@
  * }
  */
 class Solution {
+    public static class LevelNode {
+        int level;
+        TreeNode levelNode;
+        LevelNode (int level, TreeNode levelNode) {
+            this.level = level;
+            this.levelNode = levelNode;
+        }
+    }
     public boolean isCousins(TreeNode root, int x, int y) {
-        TreeNode parentX = findParent(root, x);
-        TreeNode parentY = findParent(root, y);
-        return findDepth(root, x) == findDepth(root, y) && parentX != null && parentY != null && parentX.val != parentY.val;
+        LevelNode node1 = getLevelNode(root, x, 0, null);
+        LevelNode node2 = getLevelNode(root, y, 0, null);
+        return node1 != null && node1.levelNode != null && node2 != null && node2.levelNode != null
+            && node1.level == node2.level && node1.levelNode.val != node2.levelNode.val;
     }
-    public int findDepth(TreeNode root, int val) {
-        return findDepth(root, val, 0);
-    }
-    public TreeNode findParent(TreeNode root, int val) {
-        return findParent(root, val, null);
-    }
-    public TreeNode findParent(TreeNode root, int val, TreeNode parent) {
+    private static LevelNode getLevelNode(TreeNode root, int val, int level, TreeNode parent) {
         if (root == null) {
             return null;
         }
         if (root.val == val) {
-            return parent;
+            return new LevelNode(level, parent);
         }
-        TreeNode parentFound = findParent(root.left, val, root);
-        if(parentFound != null) {
-            return parentFound;
+        LevelNode levelNode = getLevelNode(root.left, val, level + 1, root);
+        if(levelNode != null) {
+            return levelNode;
         }
-        parentFound = findParent(root.right, val, root);
-        return parentFound;
-    }
-    public int findDepth(TreeNode root, int val, int level) {
-        if (root == null) {
-            return 0;
-        }
-        if (root.val == val) {
-            return level;
-        }
-        int childLevel = findDepth(root.left, val, level + 1);
-        if (childLevel != 0) {
-           return childLevel; 
-        }
-        childLevel = findDepth(root.right, val, level + 1);
-        return childLevel; 
+        return getLevelNode(root.right, val, level + 1, root);
     }
 }
