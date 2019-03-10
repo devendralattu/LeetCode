@@ -7,33 +7,37 @@
         Note: "aba" is also a valid answer.
 */
 
-public String longestPalindrome(String s) {
+class Solution {
+    public static String longestPalindrome(String s) {
+        if (s == null || s.length() <= 1) {
+            return s;
+        }
 
-    if(s == null || s.length() < 2) {
-        return s;
+        int[] palindromeSubstring = new int[] {0, 0};
+        int len = s.length();
+        for(int i = 0; i < len; i++) {
+            updatePalindromeIndex(palindromeSubstring, 
+                                  getPalindromeIndex(s, i, i));
+            updatePalindromeIndex(palindromeSubstring, 
+                                  getPalindromeIndex(s, i, i + 1));
+        }
+
+        return s.substring(palindromeSubstring[0], palindromeSubstring[1] + 1);
     }
 
-    int len = s.length();
-    int[] max_start = new int[2];
-    // max length and start pointer of the longest palindrome
-
-    for (int i = 0; i < len - 1; i++) {
-        expandV (s, i, i, max_start);
-        expandV (s, i, i + 1, max_start);
+    private static int[] getPalindromeIndex(String s, int p1, int p2) {
+        int left = 0, right = 0;
+        int len = s.length();
+        while(p1 >= 0 && p2 < len && s.charAt(p1) == s.charAt(p2)) {
+            left = p1--;
+            right = p2++;
+        }
+        return new int[] {left, right};
     }
 
-    return s.substring (max_start[1], max_start[1] + max_start[0]);
-}
-
-private static void expandV (String s, int j, int k, int[] max_start) {
-    int len = s.length();
-    while (j >= 0 && k < len && s.charAt(j) == s.charAt(k)) {
-        j--;
-        k++;
-    }
-
-    if(max_start[0] < k - j - 1) {
-        max_start[0] = k - j - 1;
-        max_start[1] = j + 1;
+    private static void updatePalindromeIndex(int[] a, int[] b) {
+        if(b[1] - b[0] > a[1] - a[0]) {
+            System.arraycopy(b, 0, a, 0, 2);
+        }
     }
 }
