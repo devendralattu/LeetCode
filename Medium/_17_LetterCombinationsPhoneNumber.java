@@ -79,6 +79,11 @@ class Solution {
         }
     }
 
+    //faster and less complex data structure
+    //private static String[] fillDialPad() {
+    //    return new String[] {" ", "*", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+    //}
+    
     private static void fillDialPad(List<List<Character>> dialPad) {
         dialPad.add(0, new ArrayList<>(Arrays.asList(' ')));
         dialPad.add(1, new ArrayList<>(Arrays.asList('*')));
