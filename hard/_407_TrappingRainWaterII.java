@@ -54,7 +54,8 @@ class Solution {
         // Visit adjacent unvisited nodes
         int[][] dirs = new int[][] {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
         int maxHeight = Integer.MIN_VALUE, waterLevel = 0;
-
+        
+        //// Method 1: update the max on ppping elements form the queue
         while (!queue.isEmpty()) {
             Cell cell = queue.poll();
             // calculate max only for popped cells
@@ -75,3 +76,20 @@ class Solution {
         return waterLevel;
     }
 }
+
+/// Method 2: insert the max adjacent element during add elements to the queue
+/*
+    while (!queue.isEmpty()) {
+        Cell cell = queue.poll();
+        for (int[] dir : dirs) {
+            int row = cell.row + dir[0];
+            int col = cell.col + dir[1];
+            if (row >= 0 && row < n && col >= 0 && col < m && !visited[row][col]) {
+                visited[row][col] = true;
+                waterLevel += Math.max(0, cell.height - heightMap[row][col]);
+                queue.offer(new Cell(row, col, 
+                                     Math.max(heightMap[row][col], cell.height)));
+            }
+        }
+    }
+*/
