@@ -65,6 +65,43 @@ public class QuickSort2DArray {
         }
         System.out.println();
     }
+    
+    // Brute force using O((m * n) + m) extra space. 
+    // Time complexity: O(m * n) for looping the martix * O(m) for checking all m rows for max element => O(m^2 * n)
+    private static void sortMatrixWithSortedRows(int[][] arr, int m, int n) {
+        int[] result = new int[m * n];
+        int end = result.length - 1;
+
+        // set index to last column
+        int[] index = new int[m];
+        Arrays.fill(index, n - 1);
+
+        // loop for all elements
+        int allElem = m * n;
+        while (allElem-- > 0) {
+            int max = Integer.MIN_VALUE, maxIdx = 0;
+            int row = 0;
+            for (int idx : index) {
+                if (idx >= 0) {
+                    if(max < arr[row][idx]) {
+                        max = arr[row][idx];
+                        maxIdx = row;
+                    }
+                }
+                row++;
+            }
+            result[end--] = max;
+            index[maxIdx]--;
+        }
+
+        // store result back to the main arr
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++){
+                arr[i][j] = result[++end];
+            }
+        }
+        System.out.println(Arrays.toString(result));
+    }
 }
 
 /*
